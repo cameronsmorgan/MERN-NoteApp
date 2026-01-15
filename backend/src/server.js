@@ -1,6 +1,7 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
+import rateLimiter from "./middleware/rateLimiter.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,18 +12,31 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5001;
-//console.log(port);
 
-connectDB();
+
+app.use(express.json()) // --> This middlewarw will parse JSON bodies: req.body
+app.use(rateLimiter)
+
+
+//Custom middleware
+// app.use((req, res, next) =>{
+//     console.log(`REQ method is: ${req.method} & REQ URL is: ${req.url}`)
+//     next();
+// })
 
 app.use("/api/notes", notesRoutes)
 
-app.use(express.json()) // --> Middleware
 
 
+connectDB().then(()=>{
 
-app.listen(port, () =>{
+
+    app.listen(port, () =>{
     console.log("Server started on PORT:", port);
+    })
 })
+
+
+
 
 
