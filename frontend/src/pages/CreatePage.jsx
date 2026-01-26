@@ -53,17 +53,12 @@ const CreatePage = () => {
                         onChange={(e)=> setContent(e.target.value)}
                       
                       />
-
                   </div>
                 </form>
-
               </div>
-
             </div>
         </div>
-
       </div>
-      
     </div>
   )
 }
