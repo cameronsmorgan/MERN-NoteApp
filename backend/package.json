@@ -17,6 +17,8 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
+    "helmet": "^8.1.0",
+    "mern-noteapp": "file:..",
     "mongoose": "^7.0.3"
   },
   "devDependencies": {
